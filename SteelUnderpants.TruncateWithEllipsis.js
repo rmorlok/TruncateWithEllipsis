@@ -10,6 +10,33 @@
 if( typeof globalScope.SteelUnderpants === "undefined" )
 	globalScope.SteelUnderpants = {};
 
+/**
+ * Ensures that a string is not longer than a certain number of characters,
+ * and if it is, truncates the string with a trailing ellipsis. The number of
+ * characters in the ellispis is considered as part of the truncated character
+ * count.
+ *
+ * @param theString the string to possibly be truncated
+ * 
+ * @param maxLength the maximum length the string can be before it is truncated, and if
+ *        is truncated, the length of the final truncated string
+ *
+ * @param howToTruncate where the ellipsis will be placed when a string is truncated. Can be:
+ * 
+ *        SteelUnderpants.TruncateWithEllipsis.START
+ *        SteelUnderpants.TruncateWithEllipsis.MIDDLE
+ *        SteelUnderpants.TruncateWithEllipsis.END
+ *        
+ *        Defaults to Steelunderpants.TruncateWithEllipsisis.END
+ * 
+ * @param truncateChars the characters to use an ellipsis. defaults to "..."
+ *
+ * @param truncateCharsLength how many characters truncateChars should be considered to be. Useful
+ *        to set if truncateChars has HTML markup that should not be considered in the truncation
+ *        calculations. Deafults to truncateChars.length
+ *
+ * @return the possibly truncated string
+ */
 globalScope.SteelUnderpants.TruncateWithEllipsis = function SteelUnderpants$TruncateWithEllipsis(
   theString, 
   maxLength, 

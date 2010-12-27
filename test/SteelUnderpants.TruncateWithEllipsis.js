@@ -41,3 +41,46 @@ test("End Ellipsis", function() {
   same(twe("1234567890", 5, twe.END, "..."), "12...", "many more than max chars");
 });
 
+test("Explicit Ellipsis Length", function() {
+  var twe = SteelUnderpants.TruncateWithEllipsis;
+  
+  same(twe("", 5, twe.MIDDLE, "<em>...</em>", 3),           "",        "empty string");
+  same(twe("1234", 5, twe.MIDDLE, "<em>...</em>", 3),       "1234",    "less than max chars");
+  same(twe("12345", 5, twe.MIDDLE, "<em>...</em>", 3),      "12345",   "exactly max chars");
+  same(twe("123456", 5, twe.MIDDLE, "<em>...</em>", 3),     "1<em>...</em>6",   "one more than max chars");
+  same(twe("1234567890", 5, twe.MIDDLE, "<em>...</em>", 3), "1<em>...</em>0",   "many more than max chars");
+  same(twe("1234567890", 6, twe.MIDDLE, "<em>...</em>", 3), "12<em>...</em>0",  "many more than max chars");
+  same(twe("1234567890", 7, twe.MIDDLE, "<em>...</em>", 3), "12<em>...</em>90", "many more than max chars");
+  same(twe("1234567890", 6, twe.MIDDLE, "<em>..</em>", 2),  "12<em>..</em>90",  "many more than max chars");
+  same(twe("1234567890", 7, twe.MIDDLE, "<em>..</em>", 2),  "123<em>..</em>90", "many more than max chars");
+});
+
+module("Dumb Cases");
+
+test("Max Length Shorter Than Ellipsis", function() {
+  var twe = SteelUnderpants.TruncateWithEllipsis;
+  
+  same(twe("", 2, twe.START, "..."),           "",   "empty string");
+  same(twe("12", 2, twe.START, "..."),         "12", "less than max chars");
+  same(twe("123", 2, twe.START, "..."),        "..", "one more than max chars");
+  same(twe("123", 2, twe.MIDDLE, "..."),       "..", "one more than max chars");
+  same(twe("123", 2, twe.END, "..."),          "..", "one more than max chars");
+});
+
+test("Zero-length ellipsis", function() {
+  var twe = SteelUnderpants.TruncateWithEllipsis;
+  
+  same(twe("", 2, twe.START, ""),           "",   "empty string");
+  same(twe("12", 2, twe.START, ""),         "12", "less than max chars");
+  same(twe("123", 2, twe.START, ""),        "23", "one more than max chars");
+  same(twe("123", 2, twe.MIDDLE, ""),       "13", "one more than max chars");
+  same(twe("123", 2, twe.END, ""),          "12", "one more than max chars");
+});
+
+test("Zero-length max length", function() {
+  var twe = SteelUnderpants.TruncateWithEllipsis;
+  
+  same(twe("", 0, twe.START, "..."),           "",   "empty string");
+  same(twe("12", 0, twe.START, "..."),         "",   "non-empty string, non-empty ellipsis");
+  same(twe("123", 0, twe.START, ""),           "",   "non-empty string, empty ellipsis");
+});
