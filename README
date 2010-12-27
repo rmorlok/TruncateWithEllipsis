@@ -1,0 +1,28 @@
+A function to dynamically truncate strings to specified number of characters. E.g.
+
+// Defaults to end with ...
+SteelUnderpants.TruncateWithEllipsis("The quick brown fox", 5); // "Th..."
+
+// Optionally specify middle of string
+SteelUnderpants.TruncateWithEllipsis(
+  "1234567890", 
+  7,
+  SteelUnderpants.TruncateWithEllipsis.MIDDLE); // "12...90"
+
+// Optionally specify "ellispis" chars
+SteelUnderpants.TruncateWithEllipsis(
+  "1234567890", 
+  7,
+  SteelUnderpants.TruncateWithEllipsis.START,
+  "@@@@"); // "@@@@890"
+
+// Optionally specify how long the ellipsis chars
+// count for to account for HTML markup.
+SteelUnderpants.TruncateWithEllipsis(
+  "1234567890", 
+  7,
+  SteelUnderpants.TruncateWithEllipsis.END,
+  "<em>...</em>",
+  3); // "1234<em>...</em>"
+
+Note that the max length includes the ellipsis.
