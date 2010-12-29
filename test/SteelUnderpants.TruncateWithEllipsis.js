@@ -1,6 +1,6 @@
 /* 
  * JavaScript TruncateWithEllipsis
- * SteelUnderpants.TruncateWithEllipsis.js unit tests
+ * SteelUnderpants.truncateWithEllipsis.js unit tests
  * Copyright 2010, Steel Underpants Software (Ryan Morlok)
  * Released under the MIT, BSD, and GPL Licenses.
  * 
@@ -8,7 +8,7 @@
 module("Normal Cases");
 
 test("Start Ellipsis", function() {
-  var twe = SteelUnderpants.TruncateWithEllipsis;
+  var twe = SteelUnderpants.truncateWithEllipsis;
   
   same(twe("", 5, twe.START, "..."),           "",      "empty string");
   same(twe("1234", 5, twe.START, "..."),       "1234",  "less than max chars");
@@ -18,7 +18,7 @@ test("Start Ellipsis", function() {
 });
 
 test("Middle Ellipsis", function() {
-  var twe = SteelUnderpants.TruncateWithEllipsis;
+  var twe = SteelUnderpants.truncateWithEllipsis;
   
   same(twe("", 5, twe.MIDDLE, "..."),           "",        "empty string");
   same(twe("1234", 5, twe.MIDDLE, "..."),       "1234",    "less than max chars");
@@ -32,7 +32,7 @@ test("Middle Ellipsis", function() {
 });
 
 test("End Ellipsis", function() {
-  var twe = SteelUnderpants.TruncateWithEllipsis;
+  var twe = SteelUnderpants.truncateWithEllipsis;
   
   same(twe("", 5, twe.END, "..."),           "",      "empty string");
   same(twe("1234", 5, twe.END, "..."),       "1234",  "less than max chars");
@@ -42,7 +42,7 @@ test("End Ellipsis", function() {
 });
 
 test("Explicit Ellipsis Length", function() {
-  var twe = SteelUnderpants.TruncateWithEllipsis;
+  var twe = SteelUnderpants.truncateWithEllipsis;
   
   same(twe("", 5, twe.MIDDLE, "<em>...</em>", 3),           "",        "empty string");
   same(twe("1234", 5, twe.MIDDLE, "<em>...</em>", 3),       "1234",    "less than max chars");
@@ -58,7 +58,7 @@ test("Explicit Ellipsis Length", function() {
 module("Dumb Cases");
 
 test("Max Length Shorter Than Ellipsis", function() {
-  var twe = SteelUnderpants.TruncateWithEllipsis;
+  var twe = SteelUnderpants.truncateWithEllipsis;
   
   same(twe("", 2, twe.START, "..."),           "",   "empty string");
   same(twe("12", 2, twe.START, "..."),         "12", "less than max chars");
@@ -68,7 +68,7 @@ test("Max Length Shorter Than Ellipsis", function() {
 });
 
 test("Zero-length ellipsis", function() {
-  var twe = SteelUnderpants.TruncateWithEllipsis;
+  var twe = SteelUnderpants.truncateWithEllipsis;
   
   same(twe("", 2, twe.START, ""),           "",   "empty string");
   same(twe("12", 2, twe.START, ""),         "12", "less than max chars");
@@ -78,7 +78,7 @@ test("Zero-length ellipsis", function() {
 });
 
 test("Zero-length max length", function() {
-  var twe = SteelUnderpants.TruncateWithEllipsis;
+  var twe = SteelUnderpants.truncateWithEllipsis;
   
   same(twe("", 0, twe.START, "..."),           "",   "empty string");
   same(twe("12", 0, twe.START, "..."),         "",   "non-empty string, non-empty ellipsis");

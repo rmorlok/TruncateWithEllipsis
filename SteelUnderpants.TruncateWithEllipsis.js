@@ -1,6 +1,6 @@
 /* 
  * JavaScript Truncate Strings With Ellipsis
- * SteelUnderpants.TruncateWithEllipsis.js
+ * SteelUnderpants.truncateWithEllipsis.js
  * Copyright 2010, Steel Underpants Software (Ryan Morlok)
  * Released under the MIT, BSD, and GPL Licenses.
  * 
@@ -24,9 +24,9 @@ if( typeof SteelUnderpants === "undefined" ) {
  *
  * @param howToTruncate where the ellipsis will be placed when a string is truncated. Can be:
  * 
- *        SteelUnderpants.TruncateWithEllipsis.START
- *        SteelUnderpants.TruncateWithEllipsis.MIDDLE
- *        SteelUnderpants.TruncateWithEllipsis.END
+ *        SteelUnderpants.truncateWithEllipsis.START
+ *        SteelUnderpants.truncateWithEllipsis.MIDDLE
+ *        SteelUnderpants.truncateWithEllipsis.END
  *        
  *        Defaults to Steelunderpants.TruncateWithEllipsisis.END
  * 
@@ -38,7 +38,7 @@ if( typeof SteelUnderpants === "undefined" ) {
  *
  * @return the possibly truncated string
  */
-SteelUnderpants.TruncateWithEllipsis = function SteelUnderpants$TruncateWithEllipsis(
+SteelUnderpants.truncateWithEllipsis = function SteelUnderpants$TruncateWithEllipsis(
   theString, 
   maxLength, 
   howToTruncate, 
@@ -57,10 +57,10 @@ SteelUnderpants.TruncateWithEllipsis = function SteelUnderpants$TruncateWithElli
     return theString;
   }
 
-  if( howToTruncate !== SteelUnderpants.TruncateWithEllipsis.START &&
-      howToTruncate !== SteelUnderpants.TruncateWithEllipsis.MIDDLE &&
-      howToTruncate !== SteelUnderpants.TruncateWithEllipsis.END ) {
-      howToTruncate = SteelUnderpants.TruncateWithEllipsis.END;
+  if( howToTruncate !== SteelUnderpants.truncateWithEllipsis.START &&
+      howToTruncate !== SteelUnderpants.truncateWithEllipsis.MIDDLE &&
+      howToTruncate !== SteelUnderpants.truncateWithEllipsis.END ) {
+      howToTruncate = SteelUnderpants.truncateWithEllipsis.END;
   }
 
   if( typeof truncateChars !== "string") {
@@ -75,18 +75,18 @@ SteelUnderpants.TruncateWithEllipsis = function SteelUnderpants$TruncateWithElli
     return truncateChars.substring(0, maxLength);
   }
 
-  if( howToTruncate === SteelUnderpants.TruncateWithEllipsis.START ) {
+  if( howToTruncate === SteelUnderpants.truncateWithEllipsis.START ) {
 
     return truncateChars + theString.substring(theString.length - (maxLength - truncateCharsLength)); 
 
-  } else if( howToTruncate === SteelUnderpants.TruncateWithEllipsis.MIDDLE ) {
+  } else if( howToTruncate === SteelUnderpants.truncateWithEllipsis.MIDDLE ) {
 
     var firstChunkEnd = Math.ceil( (maxLength - truncateCharsLength)/2 );
     return theString.substring(0, firstChunkEnd) +
 	   truncateChars +
 	   theString.substring(theString.length - (maxLength - truncateCharsLength - firstChunkEnd));
 
-  } else { // howToTruncate === SteelUnderpants.TruncateWithEllipsis.END
+  } else { // howToTruncate === SteelUnderpants.truncateWithEllipsis.END
 
     return theString.substring(0, maxLength - truncateCharsLength) + truncateChars; 
 
@@ -97,18 +97,18 @@ SteelUnderpants.TruncateWithEllipsis = function SteelUnderpants$TruncateWithElli
  * Constant to indicate that a string should start with ellipsis when truncated.
  * E.g. "...lazy brown dogs"
  */
-SteelUnderpants.TruncateWithEllipsis.START = -1;
+SteelUnderpants.truncateWithEllipsis.START = -1;
 
 /**
  * Constant to indicate that a string should have ellipsis in the middle when truncated.
  * E.g. "The quick red fox...lazy brown dogs"
  */
-SteelUnderpants.TruncateWithEllipsis.MIDDLE = 0;
+SteelUnderpants.truncateWithEllipsis.MIDDLE = 0;
 
 /**
  * Constant to indicate that a string should end with ellipsis when truncated.
  * E.g. "The quick red fox..."
  */
-SteelUnderpants.TruncateWithEllipsis.END = 1;
+SteelUnderpants.truncateWithEllipsis.END = 1;
 
 })(window, window.SteelUnderpants);
